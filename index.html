@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>数学讲解师 · 高中数学｜思考不止，求证不息</title>
+  <meta name="description" content="数学讲解师的高中数学课堂：函数与导数、三角函数、数列、立体几何、解析几何、概率统计。视频课程与交互实验室，把抽象的数学讲成看得见的图像。">
+  <meta name="theme-color" content="#04060c">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:title" content="数学讲解师 · 高中数学">
+  <meta property="og:description" content="思考不止，求证不息。视频课程 + 交互实验室，把抽象的数学讲成看得见的图像。">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2304060c'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23d8b878' stroke-opacity='.7'/%3E%3Cellipse cx='32' cy='32' rx='24' ry='9' fill='none' stroke='%23f4efe4' stroke-opacity='.55' transform='rotate(-32 32 32)'/%3E%3Ccircle cx='32' cy='32' r='3.6' fill='%23e3c27e'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" media="print" onload="this.media='all'"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Noto+Serif+SC:wght@300;400;600&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <noscript><style>[data-reveal]{opacity:1;translate:none}</style></noscript>
+</head>
+<body>
+  <a class="skip-link" href="#courses">跳到课程库</a>
+  <noscript><div class="noscript-banner">本站的课程与交互实验需要 JavaScript。请用浏览器直接打开这个页面，或部署后再访问。</div></noscript>
+
+  <!-- 背景：星云 / 星海 / 颗粒 -->
+  <div class="bg-aura" aria-hidden="true"></div>
+  <canvas id="starfield" class="starfield" aria-hidden="true"></canvas>
+  <div class="bg-grain" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ================= 导航 ================= -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="数学讲解师 · 回到首页">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 44 44">
+            <circle cx="22" cy="22" r="13.5" fill="none" stroke="currentColor" stroke-opacity=".65"/>
+            <ellipse cx="22" cy="22" rx="20" ry="7.5" fill="none" stroke="currentColor" stroke-opacity=".38" transform="rotate(-32 22 22)"/>
+            <circle cx="22" cy="22" r="3.2" fill="currentColor"/>
+            <circle cx="40" cy="12" r="1.6" fill="currentColor" opacity=".8"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">数学讲解师</span>
+          <span class="brand-sub">MATH · EXPLAINED</span>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="主导航">
+        <a href="#galaxy" data-nav="galaxy">星图</a>
+        <a href="#courses" data-nav="courses">课程</a>
+        <a href="#lab" data-nav="lab">实验室</a>
+        <a href="#timeline" data-nav="timeline">长廊</a>
+        <a href="#culture" data-nav="culture">文化</a>
+        <a href="#about" data-nav="about">关于</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-primary btn-sm header-cta" href="#courses">开始学习
+          <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 移动端菜单 -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-inner">
+      <p class="eyebrow"><span class="eyebrow-line"></span>INDEX</p>
+      <nav aria-label="移动端导航">
+        <a href="#galaxy"><i>01</i>星图</a>
+        <a href="#courses"><i>02</i>课程</a>
+        <a href="#lab"><i>03</i>实验室</a>
+        <a href="#timeline"><i>04</i>长廊</a>
+        <a href="#culture"><i>05</i>文化</a>
+        <a href="#about"><i>06</i>关于</a>
+      </nav>
+      <p class="mobile-sign">思考不止，求证不息。</p>
+      <p class="mobile-note">高中数学 · 视频课程 + 交互实验</p>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ================= 首屏 ================= -->
+    <section class="hero" id="home">
+      <div class="hero-horizon" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow hero-eyebrow"><span class="eyebrow-line"></span>高中数学 · 视频课程与交互实验</p>
+          <h1 class="hero-title"><span>数学</span><span class="hero-title-gold">讲解师</span></h1>
+          <p class="hero-sign"><span class="sign-dash" aria-hidden="true"></span>思考不止，求证不息。</p>
+          <p class="hero-desc">
+            把抽象的符号，讲成看得见的图像；把解题的直觉，拆成可以复用的方法。从函数到概率，从圆锥曲线到空间向量，我们一起把高中数学，重新理解一遍。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#courses">进入课程库
+              <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="#lab"><span class="play-ring" aria-hidden="true"></span>打开交互实验室</a>
+          </div>
+          <ul class="hero-stats">
+            <li><strong data-count="6" data-pad="2">06</strong><span>大板块</span></li>
+            <li><strong data-count="7" data-pad="2">07</strong><span>完整视频</span></li>
+            <li><strong class="infinity">∞</strong><span>追问空间</span></li>
+          </ul>
+        </div>
+
+        <div class="hero-visual" id="hero-visual" aria-hidden="true">
+          <div class="astro-glow"></div>
+          <div class="astrolabe">
+            <svg class="astro-svg" viewBox="0 0 600 600" aria-hidden="true">
+              <defs>
+                <radialGradient id="astroCore" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#F7E9C8" stop-opacity=".95"/>
+                  <stop offset="34%" stop-color="#D8B878" stop-opacity=".3"/>
+                  <stop offset="100%" stop-color="#D8B878" stop-opacity="0"/>
+                </radialGradient>
+                <linearGradient id="arcGold" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#D8B878" stop-opacity="0"/>
+                  <stop offset=".5" stop-color="#F2DCAE" stop-opacity=".85"/>
+                  <stop offset="1" stop-color="#D8B878" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+
+              <circle cx="300" cy="300" r="286" fill="url(#astroCore)" opacity=".14"/>
+
+              <g class="astro-spin">
+                <circle cx="300" cy="300" r="282" fill="none" stroke="rgba(216,184,120,.18)" stroke-width="1"/>
+                <circle cx="300" cy="300" r="267" fill="none" stroke="rgba(216,184,120,.34)" stroke-width="9" stroke-dasharray="1 10.5"/>
+                <circle cx="300" cy="300" r="247" fill="none" stroke="url(#arcGold)" stroke-width="1.6" stroke-dasharray="170 1382" transform="rotate(-118 300 300)"/>
+                <circle cx="300" cy="300" r="247" fill="none" stroke="url(#arcGold)" stroke-width="1.6" stroke-dasharray="86 1466" transform="rotate(42 300 300)"/>
+                <circle cx="300" cy="300" r="247" fill="none" stroke="url(#arcGold)" stroke-width="1.6" stroke-dasharray="42 1510" transform="rotate(162 300 300)"/>
+              </g>
+
+              <g class="astro-spin-reverse">
+                <ellipse cx="300" cy="300" rx="236" ry="93" fill="none" stroke="rgba(244,239,228,.16)" stroke-width="1" stroke-dasharray="2 6" transform="rotate(-27 300 300)"/>
+                <circle cx="300" cy="300" r="196" fill="none" stroke="rgba(127,216,255,.13)" stroke-width="1"/>
+                <circle cx="536" cy="192" r="3" fill="#7FD8FF" opacity=".85"/>
+                <circle cx="64" cy="408" r="2.2" fill="#D8B878" opacity=".7"/>
+              </g>
+
+              <g class="astro-spin-slow">
+                <circle cx="300" cy="300" r="150" fill="none" stroke="rgba(216,184,120,.2)" stroke-width="1" stroke-dasharray="1 7"/>
+                <circle cx="450" cy="300" r="2.4" fill="#E3C27E" opacity=".9"/>
+                <circle cx="150" cy="300" r="1.8" fill="#A48CFF" opacity=".8"/>
+              </g>
+
+              <g stroke="rgba(244,239,228,.07)" stroke-width="1">
+                <line x1="300" y1="42" x2="300" y2="558"/>
+                <line x1="42" y1="300" x2="558" y2="300"/>
+              </g>
+
+              <circle cx="300" cy="300" r="74" fill="rgba(5,8,15,.55)" stroke="rgba(244,239,228,.14)" stroke-width="1"/>
+              <circle cx="300" cy="300" r="58" fill="none" stroke="rgba(216,184,120,.28)" stroke-width="1"/>
+              <circle cx="300" cy="300" r="40" fill="url(#astroCore)"/>
+              <circle cx="300" cy="300" r="4" fill="#F7E9C8"/>
+              <text x="300" y="317" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="48" fill="#F4EFE4" fill-opacity=".95">∞</text>
+
+              <g font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(244,239,228,.34)" letter-spacing="2">
+                <text x="300" y="34" text-anchor="middle">SIN</text>
+                <text x="574" y="304" text-anchor="middle">π</text>
+                <text x="300" y="578" text-anchor="middle">φ</text>
+                <text x="26" y="304" text-anchor="middle">e</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="float-chip chip-a"><span class="chip-dot"></span>e<sup>iπ</sup> + 1 = 0</div>
+          <div class="float-chip chip-b">lim<sub>x→0</sub> sin x ⁄ x = 1</div>
+          <div class="float-chip chip-c">φ = (1 + √5) ⁄ 2</div>
+        </div>
+      </div>
+
+      <div class="container hero-bottom">
+        <div class="scroll-cue" aria-hidden="true"><span>SCROLL TO EXPLORE</span><i></i></div>
+        <div class="hero-side-note" aria-hidden="true">EST. 2026 · 高中数学 · 视频 + 交互</div>
+      </div>
+    </section>
+
+    <!-- ================= 公式跑马灯 ================= -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-group">
+          <span>函数</span><i>◇</i><span>极限</span><i>◇</i><span>向量</span><i>◇</i><span>概率</span><i>◇</i><span>分形</span><i>◇</i><span>黄金比</span><i>◇</i><span>拓扑</span><i>◇</i><span>傅里叶</span><i>◇</i><span>黎曼</span><i>◇</i><span>欧拉</span><i>◇</i>
+          <span>函数</span><i>◇</i><span>极限</span><i>◇</i><span>向量</span><i>◇</i><span>概率</span><i>◇</i><span>分形</span><i>◇</i><span>黄金比</span><i>◇</i><span>拓扑</span><i>◇</i><span>傅里叶</span><i>◇</i><span>黎曼</span><i>◇</i><span>欧拉</span><i>◇</i>
+        </div>
+        <div class="marquee-group">
+          <span>函数</span><i>◇</i><span>极限</span><i>◇</i><span>向量</span><i>◇</i><span>概率</span><i>◇</i><span>分形</span><i>◇</i><span>黄金比</span><i>◇</i><span>拓扑</span><i>◇</i><span>傅里叶</span><i>◇</i><span>黎曼</span><i>◇</i><span>欧拉</span><i>◇</i>
+          <span>函数</span><i>◇</i><span>极限</span><i>◇</i><span>向量</span><i>◇</i><span>概率</span><i>◇</i><span>分形</span><i>◇</i><span>黄金比</span><i>◇</i><span>拓扑</span><i>◇</i><span>傅里叶</span><i>◇</i><span>黎曼</span><i>◇</i><span>欧拉</span><i>◇</i>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 01 知识星系 ================= -->
+    <section class="section galaxy" id="galaxy">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line"></span>01 / 星图 · THE CONSTELLATION</p>
+            <h2 class="section-title">六座知识星系</h2>
+          </div>
+          <p class="section-desc">六个大板块，一板块一讲完整视频。点一下星球，直接播放。</p>
+        </header>
+
+        <div class="galaxy-grid">
+          <div class="orbit-wrap" id="orbit-wrap">
+            <svg class="orbit-rings" viewBox="0 0 100 100" aria-hidden="true">
+              <circle cx="50" cy="50" r="32" fill="none" stroke="rgba(244,239,228,.10)" stroke-width=".18" stroke-dasharray=".7 1.4"/>
+              <circle cx="50" cy="50" r="41.5" fill="none" stroke="rgba(244,239,228,.08)" stroke-width=".18" stroke-dasharray=".7 1.4"/>
+              <circle cx="50" cy="50" r="15" fill="none" stroke="rgba(216,184,120,.16)" stroke-width=".18"/>
+            </svg>
+            <div class="orbit-rotor" id="orbit-rotor"></div>
+            <div class="orbit-core" aria-hidden="true"><span>Σ</span></div>
+            <p class="orbit-hint">悬停查看 · 点击播放视频</p>
+          </div>
+
+          <div class="module-panel" id="module-panel" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 02 课程库 ================= -->
+    <section class="section library" id="courses">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line"></span>02 / 课堂 · THE LIBRARY</p>
+            <h2 class="section-title">课程库</h2>
+          </div>
+          <p class="section-desc">六个大板块，一板块一讲；外加一讲「高中数学思维重构课」。不做碎片，只讲完整的体系。</p>
+        </header>
+
+        <div class="library-meta" data-reveal>
+          <p class="library-count" id="library-count">共 7 讲</p>
+          <div class="library-progress">
+            <span>已学 <b id="progress-done">0</b> / <span id="progress-total">7</span></span>
+            <i class="progress-track"><b id="progress-bar"></b></i>
+          </div>
+        </div>
+
+        <div class="featured-wrap" id="featured-course" data-reveal></div>
+
+        <div class="module-library-head" data-reveal>
+          <span class="ml-label">六大板块 · SIX MODULES</span>
+          <span class="ml-hint">点击任意板块，直接观看完整视频</span>
+        </div>
+
+        <div class="course-grid" id="course-grid"></div>
+        <noscript><p class="library-empty">课程库需要 JavaScript 才能加载。请用浏览器直接打开这个页面。</p></noscript>
+      </div>
+    </section>
+
+    <!-- ================= 03 交互实验室 ================= -->
+    <section class="section lab" id="lab">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line"></span>03 / 实验室 · THE LAB</p>
+            <h2 class="section-title">把公式，拖进现实</h2>
+          </div>
+          <p class="section-desc">参数一动，图像就说话。四个可以亲手操作的小实验，把课本里的结论变成你看见的过程。</p>
+        </header>
+
+        <div class="lab-tabs" role="tablist" aria-label="交互实验">
+          <button class="lab-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="lab-panel-trig" id="lab-tab-trig" data-lab="trig"><span class="lab-tab-no">01</span>单位圆 · 正弦波</button>
+          <button class="lab-tab" type="button" role="tab" aria-selected="false" aria-controls="lab-panel-deriv" id="lab-tab-deriv" data-lab="deriv"><span class="lab-tab-no">02</span>割线 · 切线</button>
+          <button class="lab-tab" type="button" role="tab" aria-selected="false" aria-controls="lab-panel-monte" id="lab-tab-monte" data-lab="monte"><span class="lab-tab-no">03</span>随机 · π</button>
+          <button class="lab-tab" type="button" role="tab" aria-selected="false" aria-controls="lab-panel-golden" id="lab-tab-golden" data-lab="golden"><span class="lab-tab-no">04</span>斐波那契 · 螺旋</button>
+        </div>
+
+        <div class="lab-stage">
+          <!-- 实验 1 -->
+          <section class="lab-panel is-active" id="lab-panel-trig" role="tabpanel" aria-labelledby="lab-tab-trig">
+            <div class="lab-body">
+              <div class="lab-canvas-wrap">
+                <canvas id="lab-canvas-trig" aria-label="单位圆与正弦曲线交互图"></canvas>
+                <span class="canvas-tag">拖动圆上的点</span>
+              </div>
+              <div class="lab-controls">
+                <p class="lab-index">EXPERIMENT 01 / TRIGONOMETRY</p>
+                <h3 class="lab-title">单位圆 · 正弦波</h3>
+                <p class="lab-desc">把角 θ 拖到圆上，右边会画出它的正弦值。A 改变振幅，ω 改变周期。图象变换不是口诀，是圆上的运动。</p>
+
+                <div class="control">
+                  <div class="control-head"><label for="trig-theta">角 θ</label><output id="trig-theta-out">45°</output></div>
+                  <input id="trig-theta" type="range" min="0" max="360" step="1" value="45">
+                </div>
+                <div class="control">
+                  <div class="control-head"><label for="trig-a">振幅 A</label><output id="trig-a-out">1.00</output></div>
+                  <input id="trig-a" type="range" min="0.2" max="2" step="0.05" value="1">
+                </div>
+                <div class="control">
+                  <div class="control-head"><label for="trig-w">角速度 ω</label><output id="trig-w-out">1.00</output></div>
+                  <input id="trig-w" type="range" min="0.5" max="3" step="0.05" value="1">
+                </div>
+
+                <div class="control-actions">
+                  <button class="btn btn-ghost btn-sm" id="trig-auto" type="button" aria-pressed="false">自动播放</button>
+                  <button class="text-btn" id="trig-reset" type="button">重置</button>
+                </div>
+
+                <div class="readout">
+                  <div><span>sin θ</span><b id="trig-sin">0.707</b></div>
+                  <div><span>cos θ</span><b id="trig-cos">0.707</b></div>
+                  <div><span>周期 T</span><b id="trig-period">2π</b></div>
+                </div>
+
+                <a class="lab-link" href="#courses" data-goto-module="trig">观看《三角函数》板块视频 →</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- 实验 2 -->
+          <section class="lab-panel" id="lab-panel-deriv" role="tabpanel" aria-labelledby="lab-tab-deriv" hidden>
+            <div class="lab-body">
+              <div class="lab-canvas-wrap">
+                <canvas id="lab-canvas-deriv" aria-label="割线趋近切线的导数示意图"></canvas>
+                <span class="canvas-tag">拖动点 A 或调节 h</span>
+              </div>
+              <div class="lab-controls">
+                <p class="lab-index">EXPERIMENT 02 / DERIVATIVE</p>
+                <h3 class="lab-title">割线 · 切线</h3>
+                <p class="lab-desc">固定点 A，让 B 沿着曲线靠近 A。割线 AB 的斜率会逼近 A 点切线的斜率——这就是导数。</p>
+                <div class="lab-legend">
+                  <span class="lg lg-sec">割线 AB</span>
+                  <span class="lg lg-tan">切线 f′(a)</span>
+                </div>
+
+                <div class="control">
+                  <div class="control-head"><label for="deriv-a">点 A 的横坐标 a</label><output id="deriv-a-out">0.60</output></div>
+                  <input id="deriv-a" type="range" min="-1.9" max="1.9" step="0.01" value="0.6">
+                </div>
+                <div class="control">
+                  <div class="control-head"><label for="deriv-h">增量 h</label><output id="deriv-h-out">1.00</output></div>
+                  <input id="deriv-h" type="range" min="0.02" max="1.6" step="0.01" value="1">
+                </div>
+
+                <div class="control-actions">
+                  <button class="btn btn-ghost btn-sm" id="deriv-snap" type="button">让 h → 0</button>
+                  <button class="text-btn" id="deriv-reset" type="button">重置</button>
+                </div>
+
+                <div class="readout">
+                  <div><span>割线斜率 k</span><b id="deriv-k">0.000</b></div>
+                  <div><span>切线斜率 f′(a)</span><b id="deriv-tan">0.000</b></div>
+                </div>
+
+                <p class="lab-formula" id="deriv-formula">f(x) = x³⁄3 − x</p>
+                <a class="lab-link" href="#courses" data-goto-module="function">观看《函数与导数》板块视频 →</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- 实验 3 -->
+          <section class="lab-panel" id="lab-panel-monte" role="tabpanel" aria-labelledby="lab-tab-monte" hidden>
+            <div class="lab-body">
+              <div class="lab-canvas-wrap">
+                <canvas id="lab-canvas-monte" aria-label="蒙特卡洛方法估算圆周率"></canvas>
+                <span class="canvas-tag">点击画布也能投点</span>
+              </div>
+              <div class="lab-controls">
+                <p class="lab-index">EXPERIMENT 03 / PROBABILITY</p>
+                <h3 class="lab-title">随机 · π</h3>
+                <p class="lab-desc">向正方形里随机投点，落在四分之一圆内的比例约等于 π/4。投得越多，估计越准。随机，也能逼近确定。</p>
+
+                <div class="control-actions">
+                  <button class="btn btn-ghost btn-sm" id="monte-run" type="button" aria-pressed="false">开始投点</button>
+                  <button class="text-btn" id="monte-reset" type="button">重置</button>
+                </div>
+
+                <div class="readout readout-wide">
+                  <div><span>投点总数 n</span><b id="monte-n">0</b></div>
+                  <div><span>落点命中</span><b id="monte-hit">0</b></div>
+                  <div><span>π 的估计值</span><b id="monte-pi">—</b></div>
+                  <div><span>与真值的误差</span><b id="monte-err">—</b></div>
+                </div>
+
+                <p class="lab-formula">P = 命中数 ⁄ 总点数 = π ⁄ 4</p>
+                <a class="lab-link" href="#courses" data-goto-module="probability">观看《概率统计》板块视频 →</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- 实验 4 -->
+          <section class="lab-panel" id="lab-panel-golden" role="tabpanel" aria-labelledby="lab-tab-golden" hidden>
+            <div class="lab-body">
+              <div class="lab-canvas-wrap">
+                <canvas id="lab-canvas-golden" aria-label="斐波那契正方形与黄金螺旋"></canvas>
+                <span class="canvas-tag">拖动滑块生长</span>
+              </div>
+              <div class="lab-controls">
+                <p class="lab-index">EXPERIMENT 04 / SEQUENCE</p>
+                <h3 class="lab-title">斐波那契 · 螺旋</h3>
+                <p class="lab-desc">每一项等于前两项之和。把正方形按斐波那契数排开，再画出四分之一圆弧，就长出了这条螺旋。</p>
+
+                <div class="control">
+                  <div class="control-head"><label for="golden-n">项数 n</label><output id="golden-n-out">8</output></div>
+                  <input id="golden-n" type="range" min="2" max="14" step="1" value="8">
+                </div>
+
+                <div class="readout">
+                  <div><span>F(n)</span><b id="golden-fn">21</b></div>
+                  <div><span>F(n+1) ⁄ F(n)</span><b id="golden-ratio">1.618</b></div>
+                </div>
+
+                <p class="lab-formula">φ = (1 + √5) ⁄ 2 ≈ 1.6180339…</p>
+                <a class="lab-link" href="#courses" data-goto-module="sequence">观看《数列》板块视频 →</a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 04 数学长廊 ================= -->
+    <section class="section timeline-section" id="timeline">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line"></span>04 / 长廊 · THE LONG WALK</p>
+            <h2 class="section-title">两千年的追问</h2>
+          </div>
+          <p class="section-desc">你今天写下的每一步，都站在前人的肩上。十三次顿悟，连成一条通往现在的路。</p>
+        </header>
+
+        <div class="timeline" id="timeline-track">
+          <div class="timeline-rail" aria-hidden="true"><i id="timeline-fill"></i></div>
+
+          <article class="tl-item" data-reveal>
+            <div class="tl-year"><span>约前1800</span><em class="era era-ancient">古代</em></div>
+            <div class="tl-body">
+              <p class="tl-kicker">巴比伦 · 普林顿 322 号泥板</p>
+              <h3 class="tl-title">表格里的勾股数</h3>
+              <p class="tl-text">人们在泥板上按行列出勾股数，比毕达哥拉斯早了一千多年。数学，最早是一种记录。</p>
+            </div>
+          </article>
+
+          <article class="tl-item" data-reveal>
+            <div class="tl-year"><span>约前300</span><em class="era era-ancient">古代</em></div>
+            <div class="tl-body">
+              <p class="tl-kicker">希腊 · 欧几里得《几何原本》</p>
+              <h3 class="tl-title">从五条公设出发</h3>
+              <p class="tl-text">欧几里得用演绎搭起整个几何世界。「证明」从此成为一种写作方式，也成了数学的骨架。</p>
+            </div>
+          </article>
+
+          <article class="tl-item" data-reveal>
+            <div class="tl-year"><span>前3世纪</span><em class="era era-ancient">古代</em></div>
+            <div class="tl-body">
+              <p class="tl-kicker">希腊 · 阿基米德</p>
+              <h3 class="tl-title">穷竭法</h3>
+              <p class="tl-text">用内接与外切正多边形不断逼近圆，把 π 夹在 3.1408 与 3.1429 之间。极限的思想，比微积分早了两千年。</p>
+            </div>
+          </article>
+
+          <article class="tl-item" data-reveal>
+            <div class="tl-year"><span>263</span><em class="era era-ancient">古代</em></div>
+            <div class="tl-body">
+              <p class="tl-kicker">中国 · 刘徽 · 割圆术</p>
+              <h3 class="tl-title">割之弥细，所失弥少</h3>
+              <p class="tl-text">刘徽用正 3072 边形算出 π ≈ 3.1416，把「无限」真正带进了计算。</p>
+            </div>
+          </article>
+
+          <article class="tl-item" data-reveal>
+            <div class="tl-year"><span>约480</span><em class="era era-ancient">古代</em></div>
+            <div class="tl-body">
+              <p class="tl-kicker">中国 · 祖冲之</p>
+              <h3 class="tl-title">七位小数与密率</h3>
+              <p class="tl-text">祖冲之把圆周率精确到小数点后七位，并给出密率 355/113。这个纪录保持了近一千年。</p>
+            </div>
+          </article>
+
+          <article class="tl-item" data-reveal>
+            <div class="tl-year"><span>1247</span><em class="era era-ancient">古代</em></div>
+            <div class="tl-body">
+              <p class="tl-kicker">中国 · 秦九韶《数书九章》</p>
+              <h3 class="tl-title">算法的高峰</h3>
+              <p class="tl-text">大衍求一术处理同余，正负开方术处理高次方程。宋元数学的算法传统，在这里达到高峰。</p>
+            </div>
+          </article>
+
+          <article class="tl-item" data-reveal>
+            <div class="tl-year"><span>1637</span><em class="era era-modern">近代</em></div>
+            <div class="tl-body">
+              <p class="tl-kicker">法国 · 笛卡尔《几何学》</p>
+              <h3 class="tl-title">坐标：把形翻译成数</h3>
+              <p class="tl-text">坐标把「形」翻译成「数」。从此几何与代数可以互相提问，解析几何诞生。</p>
+            </div>
+          </article>
+
+          <article class="tl-item" data-reveal>
+            <div class="tl-year"><span>1687</span><em class="era era-modern">近代</em></div>
+            <div class="tl-body">
+              <p class="tl-kicker">英国 · 牛顿《自然哲学的数学原理》</p>
+              <h3 class="tl-title">用方程预言天体</h3>
+              <p class="tl-text">微积分与万有引力同时登场。人类第一次用方程，预言了天体的位置。</p>
+            </div>
+          </article>
+
+          <article class="tl-item" data-reveal>
+            <div class="tl-year"><span>1748</span><em class="era era-modern">近代</em></div>
+            <div class="tl-body">
+              <p class="tl-kicker">瑞士 · 欧拉《无穷分析引论》</p>
+              <h3 class="tl-title">e<sup>iπ</sup> + 1 = 0</h3>
+              <p class="tl-text">五个最重要的常数，被一个等式收在一起。数学的美，有时候是可以写在一行里的。</p>
+            </div>
+          </article>
+
+          <article class="tl-item" data-reveal>
+            <div class="tl-year"><span>1829</span><em class="era era-modern">近代</em></div>
+            <div class="tl-body">
+              <p class="tl-kicker">俄国 · 罗巴切夫斯基</p>
+              <h3 class="tl-title">非欧几何</h3>
+              <p class="tl-text">放弃第五公设，也能长出一套自洽的几何。真理，开始依赖你选择的前提。</p>
+            </div>
+          </article>
+
+          <article class="tl-item" data-reveal>
+            <div class="tl-year"><span>1859</span><em class="era era-modern">近代</em></div>
+            <div class="tl-body">
+              <p class="tl-kicker">德国 · 黎曼</p>
+              <h3 class="tl-title">素数如何分布？</h3>
+              <p class="tl-text">一篇八页的论文，留下数学史上最著名的未解问题。至今，仍没有人能完整回答。</p>
+            </div>
+          </article>
+
+          <article class="tl-item" data-reveal>
+            <div class="tl-year"><span>1931</span><em class="era era-contemporary">现代</em></div>
+            <div class="tl-body">
+              <p class="tl-kicker">奥地利 · 哥德尔</p>
+              <h3 class="tl-title">不完全性定理</h3>
+              <p class="tl-text">任何足够丰富的公理系统，都存在系统内无法证明的真命题。数学第一次看清自己的边界。</p>
+            </div>
+          </article>
+
+          <article class="tl-item" data-reveal>
+            <div class="tl-year"><span>1966</span><em class="era era-contemporary">现代</em></div>
+            <div class="tl-body">
+              <p class="tl-kicker">中国 · 陈景润</p>
+              <h3 class="tl-title">1 + 2</h3>
+              <p class="tl-text">陈景润证明「1+2」，距离哥德巴赫猜想只差最后一步，也让世界看见中国数论。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 05 数学文化 ================= -->
+    <section class="section culture" id="culture">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <div>
+            <p class="eyebrow"><span class="eyebrow-line"></span>05 / 文化 · THE CULTURE</p>
+            <h2 class="section-title">数学是宇宙写给人类的信</h2>
+          </div>
+          <p class="section-desc">公式之外，还有审美与惊奇。那些让人突然停下来的一瞬，往往才是真正开始学数学的地方。</p>
+        </header>
+
+        <div class="quote-shell" data-reveal id="quote-shell">
+          <span class="quote-mark" aria-hidden="true">“</span>
+          <div class="quote-slides" id="quote-slides">
+            <figure class="quote-slide is-active">
+              <blockquote>数学是科学的皇后，而数论是数学的皇后。</blockquote>
+              <figcaption>— 卡尔·弗里德里希·高斯</figcaption>
+            </figure>
+            <figure class="quote-slide">
+              <blockquote>宇宙这本书，是用数学语言写成的。</blockquote>
+              <figcaption>— 伽利略·伽利雷</figcaption>
+            </figure>
+            <figure class="quote-slide">
+              <blockquote>纯粹数学，就其本身而言，是逻辑观念的诗。</blockquote>
+              <figcaption>— 阿尔伯特·爱因斯坦</figcaption>
+            </figure>
+            <figure class="quote-slide">
+              <blockquote>数学是一门很有意义、很美丽的科学。</blockquote>
+              <figcaption>— 陈省身</figcaption>
+            </figure>
+            <figure class="quote-slide">
+              <blockquote>聪明在于勤奋，天才在于积累。</blockquote>
+              <figcaption>— 华罗庚</figcaption>
+            </figure>
+            <figure class="quote-slide">
+              <blockquote>思考不止，求证不息。</blockquote>
+              <figcaption>— 数学讲解师</figcaption>
+            </figure>
+          </div>
+          <div class="quote-controls">
+            <span class="quote-index"><b id="quote-index">01</b> <i>/</i> 06</span>
+            <button type="button" id="quote-prev" aria-label="上一条名言"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button type="button" id="quote-next" aria-label="下一条名言"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+
+        <div class="const-grid">
+          <article class="const-card" data-reveal style="--d:0ms">
+            <span class="const-symbol">π</span>
+            <h3>圆周率</h3>
+            <p class="const-digits">3.14159265358979…</p>
+            <p class="const-note">圆的周长与直径之比，也是所有周期现象的底色。</p>
+          </article>
+          <article class="const-card" data-reveal style="--d:90ms">
+            <span class="const-symbol">e</span>
+            <h3>自然常数</h3>
+            <p class="const-digits">2.71828182845904…</p>
+            <p class="const-note">增长的极限。复利、衰变与概率，都在它附近发生。</p>
+          </article>
+          <article class="const-card" data-reveal style="--d:180ms">
+            <span class="const-symbol">φ</span>
+            <h3>黄金比</h3>
+            <p class="const-digits">1.61803398874989…</p>
+            <p class="const-note">美的无理数。向日葵的种子与帕特农神庙，共享同一个比例。</p>
+          </article>
+        </div>
+
+        <div class="think-card" data-reveal id="think-card">
+          <div class="think-main">
+            <p class="eyebrow">思考一刻 · THINK FOR A MOMENT</p>
+            <h3>√2 为什么不能写成分数？</h3>
+            <p class="think-hint">先自己想一想，再展开证明。它没有计算任何近似值。</p>
+          </div>
+          <button class="btn btn-ghost think-toggle" id="think-toggle" type="button" aria-expanded="false" aria-controls="think-answer">展开证明</button>
+          <div class="think-answer" id="think-answer">
+            <div>
+              <p>假设 √2 可以写成 p/q，其中 p、q 是互质的正整数。</p>
+              <p>两边平方，得 p² = 2q²。于是 p² 是偶数，p 也必须是偶数。设 p = 2k。</p>
+              <p>代回得 4k² = 2q²，即 q² = 2k²。同样地，q 也是偶数。</p>
+              <p>p、q 同为偶数，与「互质」矛盾。所以 √2 不是有理数。</p>
+              <p class="think-punch">这个证明最动人的地方，是它没有计算任何近似值——它只用了「矛盾」这一件事。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 06 关于 ================= -->
+    <section class="section about" id="about">
+      <div class="container about-grid">
+        <div class="about-portrait" data-reveal aria-hidden="true">
+          <div class="portrait-rings"></div>
+          <span class="portrait-glyph">数</span>
+          <div class="portrait-caption">
+            <span>MATHEMATICS LECTURER</span>
+            <span>EST. 2026</span>
+          </div>
+        </div>
+
+        <div class="about-copy">
+          <p class="eyebrow" data-reveal><span class="eyebrow-line"></span>06 / 关于 · ABOUT</p>
+          <h2 class="section-title" data-reveal>我叫数学讲解师。<br>比起把答案讲得快，<br>我更在意把思路讲得慢。</h2>
+          <p data-reveal>数学最迷人的地方，从来不是答案，而是那条从条件走到结论的路——为什么想到这一步，为什么这一步是合理的，为什么换一个条件它就不成立。我的课，就是把这条路铺开，让你自己走一遍。</p>
+          <p data-reveal>这里会陆续上线六个板块的完整课程，以及一讲「高中数学思维重构课」。也会有一些不那么「应试」的东西——数学史、常数、分形，那些让人突然对数学产生好奇的瞬间。</p>
+          <p data-reveal>如果你愿意，可以从一个交互实验开始。参数动起来的时候，公式就不再只是公式了。</p>
+
+          <p class="about-sign" data-reveal>思考不止，求证不息。<span>—— 数学讲解师</span></p>
+
+          <dl class="about-info" data-reveal>
+            <div><dt>课程结构</dt><dd>先导课 + 六大板块</dd></div>
+            <div><dt>内容形式</dt><dd>完整视频 + 交互实验</dd></div>
+            <div><dt>更新状态</dt><dd>持续更新中</dd></div>
+          </dl>
+
+          <div class="about-note" data-reveal>
+            <p>课程与合作事宜，将通过官方账号公布。现在，先挑一个你最想弄懂的模块。</p>
+            <a class="btn btn-primary" href="#courses">去课程库看看
+              <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 结尾 CTA ================= -->
+    <section class="cta-band">
+      <div class="container">
+        <p class="eyebrow" data-reveal>NEXT · 下一节课</p>
+        <h2 data-reveal>下一节课，从哪开始？</h2>
+        <p data-reveal>从你最想弄懂的那一章开始。六座星系，总有一个入口。</p>
+        <div class="cta-actions" data-reveal>
+          <a class="btn btn-primary" href="#courses">进入课程库</a>
+          <a class="btn btn-ghost" href="#lab">先玩一下实验</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= 页脚 ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="#home" aria-label="回到首页">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 44 44">
+                <circle cx="22" cy="22" r="13.5" fill="none" stroke="currentColor" stroke-opacity=".65"/>
+                <ellipse cx="22" cy="22" rx="20" ry="7.5" fill="none" stroke="currentColor" stroke-opacity=".38" transform="rotate(-32 22 22)"/>
+                <circle cx="22" cy="22" r="3.2" fill="currentColor"/>
+              </svg>
+            </span>
+            <span class="brand-name">数学讲解师</span>
+          </a>
+          <p class="footer-sign">思考不止，求证不息。</p>
+        </div>
+        <nav class="footer-nav" aria-label="页脚导航">
+          <a href="#galaxy">星图</a>
+          <a href="#courses">课程</a>
+          <a href="#lab">实验室</a>
+          <a href="#timeline">长廊</a>
+          <a href="#culture">文化</a>
+          <a href="#about">关于</a>
+        </nav>
+        <div class="footer-note">
+          <p>六大板块 · 七讲完整课程。</p>
+          <p>课程内容持续更新中。</p>
+        </div>
+      </div>
+
+      <div class="footer-wordmark" aria-hidden="true">数学讲解师</div>
+
+      <div class="footer-bottom">
+        <span>© 2026 数学讲解师 · 思考不止，求证不息。</span>
+        <a href="#home">回到星图 ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= 课程弹层 ================= -->
+  <div class="modal" id="course-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" id="modal-panel" role="document">
+      <button class="modal-close" type="button" data-close aria-label="关闭课程详情">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </button>
+      <div class="video-stage" id="modal-video"></div>
+      <div class="modal-body">
+        <p class="modal-kicker" id="modal-kicker"></p>
+        <h2 class="modal-title" id="modal-title"></h2>
+        <p class="modal-tagline">支持全屏 · 建议横屏观看</p>
+        <div class="modal-actions">
+          <button class="btn btn-ghost btn-sm" id="modal-done" type="button" aria-pressed="false"><span class="check-dot"></span><span id="modal-done-text">标记为已学</span></button>
+          <button class="btn btn-ghost btn-sm" id="modal-lab" type="button" hidden>配合实验</button>
+          <button class="btn btn-primary btn-sm" id="modal-next" type="button"><span id="modal-next-text">下一个板块</span>
+            <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="courses.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
