@@ -33,7 +33,7 @@ window.MATH_DATA = {
     glyph: "∞",
     color: "#E3C27E",
     rgb: "227,194,126",
-    video: "",
+    video: `<iframe id="dogePlayerFrame" src="https://player.dogecloud.com/web/player.html?vcode=d13e419d71c65399&userId=16170&autoPlay=false&inFrame=true" allowfullscreen="true" msallowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" oallowfullscreen="true" allowtransparency="true" scrolling="no" width="100%" height="100%" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" referrerPolicy="unsafe-url"></iframe>`,
     poster: ""
   },
 
